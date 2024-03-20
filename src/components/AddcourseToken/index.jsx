@@ -11,7 +11,6 @@ import {
 import { memo, useState } from "react";
 
 import { useMutation } from "@tanstack/react-query";
-import * as courseAPI from "../../apis/courses";
 import * as courseAPINew from "../../apisNew/courses";
 import constants from "../../utils/constants";
 import { alert } from "../../utils/helpers";

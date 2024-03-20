@@ -20,7 +20,7 @@ import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { FaBookmark, FaRankingStar } from "react-icons/fa6";
 
-import AddCourseToken from "@/components/AddCourseToken";
+import AddCourseToken from "../../../components/AddCourseToken";
 import Search from "@/components/Search";
 import { useProfile } from "@/hooks/useProfile";
 import Image from "next/image";

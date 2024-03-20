@@ -149,7 +149,7 @@ export default function NavbarComponent({
       <NavbarContent justify="end" className="!flex-grow-0 ">
         <AddCourseToken>
           <Button isIconOnly radius="full" size="sm">
-            <AiOutlinePlus />
+            <AiOutlinePlus /> 
           </Button>
         </AddCourseToken>
 

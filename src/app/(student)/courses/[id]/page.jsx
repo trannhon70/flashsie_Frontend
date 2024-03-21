@@ -12,15 +12,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 
-import * as userAPI from "@/apis/user";
-import * as userAPINew from "@/apisNew/user";
 import * as coursesAPINew from "@/apisNew/courses";
 import * as flashsetsAPINEW from "@/apisNew/flashsets";
-import { SessionStore } from "@/config/sesstionStore";
-import { alert } from "@/utils/helpers";
-import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import * as userAPINew from "@/apisNew/user";
 import { useProfile } from "@/hooks/useProfile";
+import { alert } from "@/utils/helpers";
+import { useEffect, useState } from "react";
 
 const Course = () => {
   const [pageSize, setPageSize] = useState(10);
@@ -47,7 +44,7 @@ const Course = () => {
       flashsetsAPINEW
         .getFlashsets({ page: 1, perPage: pageSize, params: { course: id } })
         .then((res) => {
-          setTotal(res.total);
+          setTotal(res?.data?.total);
           setLoading(false);
           return res.data;
         }),
@@ -143,7 +140,8 @@ const Course = () => {
           </Link>
         ))}
       </div>
-      {flashsets?.data?.length === total ? (
+
+      {flashsets?.data?.data?.length === total ? (
         ""
       ) : (
         <Button

@@ -1,33 +1,32 @@
 "use client";
-import { useCallback, useState, useMemo } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import {
-  Table,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
-  User,
-  Tooltip,
-  Spinner,
-  Button,
-  Pagination,
-  Chip,
-} from "@nextui-org/react";
-import { AiFillDelete, AiOutlinePlus } from "react-icons/ai";
-import dayjs from "dayjs";
-import { alert } from "@/utils/helpers";
-import { useParams } from "next/navigation";
+import ImportStudents from "@/components/ImportStudents";
 import QrReaderModal from "@/components/common/QrReaderModal";
 import BreadCrumbs from "@/components/layouts/Breadcrumb";
-import ImportStudents from "@/components/ImportStudents";
+import { alert } from "@/utils/helpers";
+import {
+  Button,
+  Chip,
+  Pagination,
+  Spinner,
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
+  Tooltip,
+  User,
+} from "@nextui-org/react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import dayjs from "dayjs";
+import { useParams } from "next/navigation";
+import { useCallback, useMemo, useState } from "react";
+import { AiFillDelete, AiOutlinePlus } from "react-icons/ai";
 
 import * as userAPI from "@/apis/user";
-import * as courseAPI from "@/apis/courses";
 import * as courseAPINew from "@/apisNew/courses";
-import { FaFileDownload } from "react-icons/fa";
 import constants from "@/utils/constants";
+import { FaFileDownload } from "react-icons/fa";
 
 const columns = [
   // { name: 'No.', uid: 'name' },
@@ -162,10 +161,22 @@ const CourseDetail = () => {
         if (user.status === "requested") {
           return (
             <div className="flex w-20 flex-row gap-1">
-              <Button size="sm" color="success" onPress={handleAccept(user.id)}>
+              <Button
+                size="sm"
+                color="success"
+                className="z-50"
+                // onClick={() => handleAccept(user.id)}
+                onPress={handleAccept(user.id)}
+              >
                 Accept
               </Button>
-              <Button size="sm" color="danger" onPress={handleReject(user.id)}>
+              <Button
+                size="sm"
+                color="danger"
+                className="z-50"
+                // onClick={() => handleReject(user.id)}
+                onPress={handleReject(user.id)}
+              >
                 Reject
               </Button>
             </div>
@@ -189,13 +200,6 @@ const CourseDetail = () => {
         if (user.status === "requested") return null;
         return (
           <div className="relative flex w-28 items-center justify-center gap-2">
-            {/* <Tooltip content='Edit user'>
-              <Link href={`/my-room/courses/${id}/students/${user.id}`}>
-                <span className='cursor-pointer text-lg text-default-400 active:opacity-50'>
-                  <AiFillEdit />
-                </span>
-              </Link>
-            </Tooltip> */}
             <Tooltip color="danger" content="Delete student">
               <span
                 className="cursor-pointer text-lg text-danger active:opacity-50"
@@ -245,48 +249,6 @@ const CourseDetail = () => {
             </a>
           </div>
           <div className="flex gap-3">
-            {/* <Dropdown>
-              <DropdownTrigger className="hidden sm:flex">
-                <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
-                  Status
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu
-                disallowEmptySelection
-                aria-label="Table Columns"
-                closeOnSelect={false}
-                selectedKeys={statusFilter}
-                selectionMode="multiple"
-                onSelectionChange={setStatusFilter}
-              >
-                {statusOptions.map((status) => (
-                  <DropdownItem key={status.uid} className="capitalize">
-                    {capitalize(status.name)}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown>
-            <Dropdown>
-              <DropdownTrigger className="hidden sm:flex">
-                <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
-                  Columns
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu
-                disallowEmptySelection
-                aria-label="Table Columns"
-                closeOnSelect={false}
-                selectedKeys={visibleColumns}
-                selectionMode="multiple"
-                onSelectionChange={setVisibleColumns}
-              >
-                {columns.map((column) => (
-                  <DropdownItem key={column.uid} className="capitalize">
-                    {capitalize(column.name)}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown> */}
             <QrReaderModal onResult={onQrResult(id)} courseId={id}>
               {/* <Link href='/teacher/course-management/edit'> */}
               <Button color="primary" startContent={<AiOutlinePlus />}>

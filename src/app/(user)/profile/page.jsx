@@ -148,6 +148,7 @@ const Profile = () => {
                     className="my-2"
                     name="birthday"
                     defaultValue={dayjs(values?.birthday).format("YYYY-MM-DD")}
+                    value={dayjs(values?.birthday).format("YYYY-MM-DD")}
                     onValueChange={(value) =>
                       handleChange({ target: { value, name: "birthday" } })
                     }

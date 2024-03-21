@@ -21,6 +21,11 @@ export function updateStudent(id, studentId, status = "pending") {
   return ApiPUT({ link: URL, body: status });
 }
 
+export function updateStatusStudent(id, studentId, status = "pending") {
+  const URL = `/courses/approve/student?courseId=${id}&studentId=${studentId}&status=${status}`;
+  return ApiPUT({ link: URL });
+}
+
 export function getStudents(id, { page, perPage }) {
   const URL = `/courses/${id}/students?page=${page}&perPage=${perPage}`;
   return ApiGet({ link: URL });

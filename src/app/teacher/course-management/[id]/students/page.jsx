@@ -83,7 +83,7 @@ const CourseDetail = () => {
   };
   const handleAccept = (studentId) => async () => {
     try {
-      await courseAPI.updateStudent(id, studentId, "accepted");
+      await courseAPINew.updateStatusStudent(id, studentId, "accepted");
       queryClient.refetchQueries(["course-students", id]);
     } catch (error) {
       alert.error(
@@ -93,7 +93,7 @@ const CourseDetail = () => {
   };
   const handleReject = (studentId) => async () => {
     try {
-      await courseAPI.updateStudent(id, studentId, "rejected");
+      await courseAPINew.updateStatusStudent(id, studentId, "rejected");
       queryClient.refetchQueries(["course-students", id]);
     } catch (error) {
       alert.error(
@@ -110,7 +110,7 @@ const CourseDetail = () => {
           `Do you want add ${user.name} to course?`
         );
         if (isConfirmed) {
-          await courseAPI.addStudent(courseId, user.id, "pending");
+          await courseAPINew.addStudent(courseId, user.id, "pending");
           alert.success("Student has been added to course successfully!");
           queryClient.refetchQueries(["course-students", id]);
         }
@@ -122,7 +122,6 @@ const CourseDetail = () => {
   };
 
   const renderCell = useCallback((user, columnKey) => {
-    console.log(user, "user");
     const cellValue = user[columnKey];
 
     switch (columnKey) {

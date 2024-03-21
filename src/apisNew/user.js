@@ -55,3 +55,10 @@ export function acceptFriend(id) {
   const URL = `/users/friend/accept?recipientId=${id}`;
   return ApiPOST({ link: URL });
 }
+
+export function get(id) {
+  return axios({
+    url: `/api/users/${id}`,
+    method: 'GET',
+  }).then((res) => res.data)
+}

@@ -11,9 +11,9 @@ import {
 import { memo, useState } from "react";
 
 import { useMutation } from "@tanstack/react-query";
-import * as courseAPINew from "../../apisNew/courses";
-import constants from "../../utils/constants";
-import { alert } from "../../utils/helpers";
+import * as courseAPINew from "@/apisNew/courses";
+import constants from "@/utils/constants";
+import { alert } from "@/utils/helpers";
 
 const AddCourseToken = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);

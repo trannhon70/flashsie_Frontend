@@ -23,8 +23,8 @@ export default function PlayCountdown({
   handleSubmitted,
 }) {
   const queryClient = useQueryClient();
-  const [playSuccess] = useSound("/sound/success.mp3");
-  const [playWrong] = useSound("/sound/wrong.mp3");
+  const playSuccess = new Audio("/sound/success.mp3");
+  const playWrong = new Audio("/sound/wrong.mp3");
 
   const result = useRef([]);
   const refCard = useRef();
@@ -175,17 +175,18 @@ export default function PlayCountdown({
     }
   }, [isCorrect, index]);
 
-
   const handleAnswer = (img) => () => {
     // if (isCorrect != null) return
     // refCard.current.flip?.()
     if (`${question.answerTrue}`.toLowerCase() === `${img}`.toLowerCase()) {
-      playSuccess();
+      playSuccess.volume = 0.5;
+      playSuccess?.play?.();
       setIsCorrect(true);
       result.current.push(true);
       refCard.current.setColorCard("#89f9b6");
     } else {
-      playWrong();
+      playWrong.volume = 0.5;
+      playWrong.play?.();
       setIsCorrect(false);
       result.current.push(false);
       refCard.current.setColorCard("#ff8989");
@@ -199,7 +200,7 @@ export default function PlayCountdown({
       {Array.isArray(cards) && (
         <div className="mb-2 flex flex-row justify-between text-xl">
           <span>
-            {numberFormat}/{cards.length}
+            {numberFormat + 1}/{cards.length}
           </span>
         </div>
       )}

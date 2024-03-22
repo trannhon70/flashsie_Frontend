@@ -6,6 +6,7 @@ import useSound from 'use-sound'
 import * as flashsetAPI from '@/apis/flashsets'
 import * as flashsetAPINew from '@/apisNew/flashsets'
 import { shuffle, useTabActive } from '@/utils/helpers'
+import { useParams } from 'next/navigation'
 
 export default function Play({ flashsetId, width, height, cards, onPageChange, onResult, onHeart }) {
     const tabActive = useTabActive()
@@ -23,6 +24,8 @@ export default function Play({ flashsetId, width, height, cards, onPageChange, o
     const [isCorrect, setIsCorrect] = useState(null)
     const [hamburgers, setHamburgers] = useState([])
     const [heartRemain, setHeartRemain] = useState(3)
+    const parth = useParams()
+    const courses = parth && parth.flashsetId ? parth.id : "";
 
     const [timeLeft, { start, pause, resume, reset }] = useCountDown(90 * 1000, 1000)
     const result = useRef([])
@@ -79,7 +82,7 @@ export default function Play({ flashsetId, width, height, cards, onPageChange, o
                 //   }, 2000)
                 // }
             }, 500)
-            flashsetAPINew.histories(flashsetId, 'burger', [{ id: cards[index].id, result: isCorrect }]).then(() => {
+            flashsetAPINew.histories(flashsetId, 'burger', [{ id: cards[index].id, result: isCorrect }],courses).then(() => {
                 // queryClient.refetchQueries(['flashset', flashsetId])
             })
         }

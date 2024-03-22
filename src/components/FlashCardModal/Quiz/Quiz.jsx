@@ -178,6 +178,8 @@ export default function PlayCountdown({
   useEffect(() => {
     const [playSuccess] = useSound("/sound/success.mp3");
     const [playWrong] = useSound("/sound/wrong.mp3");
+    playSuccess()
+    playWrong()
   }, []);
 
   const handleAnswer = (img) => () => {

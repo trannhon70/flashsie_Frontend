@@ -175,10 +175,7 @@ export default function PlayCountdown({
     }
   }, [isCorrect, index]);
 
-  useEffect(() => {
-    playSuccess();
-    playWrong();
-  }, []);
+
 
   const handleAnswer = (img) => () => {
     // if (isCorrect != null) return

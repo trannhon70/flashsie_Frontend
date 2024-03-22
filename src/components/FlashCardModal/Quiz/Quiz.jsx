@@ -175,7 +175,10 @@ export default function PlayCountdown({
     }
   }, [isCorrect, index]);
 
-
+  useEffect(() => {
+    const [playSuccess] = useSound("/sound/success.mp3");
+    const [playWrong] = useSound("/sound/wrong.mp3");
+  }, []);
 
   const handleAnswer = (img) => () => {
     // if (isCorrect != null) return
